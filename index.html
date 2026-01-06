@@ -1,1 +1,158 @@
- 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Renejay TopUp - Top Up Game Murah</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#0f172a;
+    color:white;
+}
+header{
+    background:#020617;
+    padding:20px;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+.container{
+    padding:20px;
+    max-width:800px;
+    margin:auto;
+}
+.card{
+    background:#020617;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+select,input,button{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:none;
+    margin-top:10px;
+    font-size:16px;
+}
+select,input{
+    background:#0f172a;
+    color:white;
+}
+button{
+    background:#38bdf8;
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+}
+button:hover{
+    background:#0ea5e9;
+}
+.price{
+    margin-top:10px;
+    font-size:18px;
+    color:#22c55e;
+}
+.footer{
+    text-align:center;
+    padding:15px;
+    background:#020617;
+    color:#94a3b8;
+}
+.badge{
+    background:#22c55e;
+    padding:5px 10px;
+    border-radius:10px;
+    font-size:12px;
+    color:black;
+}
+</style>
+</head>
+<body>
+
+<header>Renejay TopUp <span class="badge">Murah & Fast</span></header>
+
+<div class="container">
+
+<div class="card">
+<h3>Pilih Game</h3>
+<select id="game">
+<option value="Mobile Legends">Mobile Legends</option>
+<option value="Free Fire">Free Fire</option>
+<option value="PUBG Mobile">PUBG Mobile</option>
+<option value="Genshin Impact">Genshin Impact</option>
+<option value="Call of Duty Mobile">Call of Duty Mobile</option>
+<option value="Honor of Kings">Honor of Kings</option>
+</select>
+
+<input type="text" id="userid" placeholder="Masukkan User ID / Server">
+
+<h3>Pilih Nominal</h3>
+<select id="nominal" onchange="updatePrice()">
+<option value="ML 86 Diamond|18000">ML 86 Diamond</option>
+<option value="ML 172 Diamond|35000">ML 172 Diamond</option>
+<option value="FF 140 Diamond|15000">FF 140 Diamond</option>
+<option value="FF 280 Diamond|28000">FF 280 Diamond</option>
+<option value="PUBG 60 UC|16000">PUBG 60 UC</option>
+<option value="PUBG 180 UC|45000">PUBG 180 UC</option>
+<option value="Genshin 60 Genesis|16000">Genshin 60 Genesis</option>
+<option value="CODM 80 CP|15000">CODM 80 CP</option>
+</select>
+
+<div class="price" id="price">Harga: Rp18.000</div>
+
+<h3>Pembayaran</h3>
+<select id="pay">
+<option>GoPay</option>
+<option>QRIS</option>
+</select>
+
+<button onclick="order()">Beli Sekarang</button>
+</div>
+
+<div class="card">
+<h3>Cara Order</h3>
+<p>1. Pilih game & nominal<br>
+2. Masukkan ID game<br>
+3. Klik beli<br>
+4. Kamu akan diarahkan ke WhatsApp Admin<br>
+5. Lakukan pembayaran via GoPay / QRIS</p>
+</div>
+
+</div>
+
+<div class="footer">
+© 2025 Renejay TopUp – Top Up Game Murah & Aman
+</div>
+
+<script>
+function updatePrice(){
+    var n = document.getElementById("nominal").value;
+    var price = n.split("|")[1];
+    document.getElementById("price").innerText = "Harga: Rp" + price;
+}
+
+function order(){
+    var game = document.getElementById("game").value;
+    var id = document.getElementById("userid").value;
+    var n = document.getElementById("nominal").value.split("|")[0];
+    var price = document.getElementById("nominal").value.split("|")[1];
+    var pay = document.getElementById("pay").value;
+
+    if(id == ""){
+        alert("Masukkan User ID terlebih dahulu!");
+        return;
+    }
+
+    var msg = "Halo Renejay TopUp%0A%0ASaya ingin order:%0A%0AGame: " + game + "%0AUser ID: " + id + "%0APaket: " + n + "%0AHarga: Rp" + price + "%0APembayaran: " + pay;
+
+    window.open("https://wa.me/6288245149035?text=" + msg);
+}
+</script>
+
+</body>
+</html>
